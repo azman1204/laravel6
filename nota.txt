@@ -1,0 +1,86 @@
+25.11.2019 - what's covered
+-----------------------------
+- installation
+ - Laragon (php 7.2.19, MySQL, Apache, Composer)
+ - VSC
+ - SQLYog
+
+- Create laravel 6 project
+ - using composer
+ - composer create-project --prefer-dist laravel/laravel lara6
+ - folder structure
+
+- MVC Concept
+ - M - Model
+ - V - view
+ - C - Controller
+ - R - Route
+
+- Blade (view)
+ - master layout
+ - Twitter Bootstrap
+
+- Model
+ - DB connection (.env)
+ - Model (Pengguna)
+  - Model (singular), table (plural)
+ - ORM vs Query Builder
+ - tinker
+
+- Form
+ - insert
+
+26.11.2019
+------------
+- Continue CRUD
+- pengguna form, list / search
+- pagination
+- validation
+- login
+- roles and privileges
+
+
+
+> php artisan serve
+ - php > 5.6, web server
+ - utk dev, tak perlu pakai apache
+
+
+tools
+-------
+Composer
+- dependency manager
+- download php program
+
+laravel 6
+- 5.8
+
+Laragon 
+ - installer 
+ - PHP 7.3, Apache, MySQL
+
+XAMPP
+WAMP
+
+IDE
+ - editor
+ - Code Charge
+ - Visual Studio Code (microsoft)
+
+DBMS
+ - Sql Yog
+ - Navicat
+ - Heidi
+ - PHP MyAdmin
+ - DBeaver
+
+Twitter Bootstrap
+- version 4
+- css framework
+
+git
+----
+- versioning system
+- github, gitlab, bitbucket
+
+

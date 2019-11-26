@@ -1,0 +1,23 @@
+#xwrapper {
+    border: 4px solid green;
+}
+
+#xheader {
+    height: 100px;
+    background-color: aqua;
+}
+
+#xmenu {
+    height: 20px;
+    background-color: brown;
+}
+
+#xcontent {
+    min-height: 400px;
+    padding: 10px;
+}
+
+#xfooter {
+    height: 30px;
+    background-color: brown;
+}

@@ -9,7 +9,11 @@
     <title>Laravel 6 Training</title>
 </head>
 <body>
-    content here
-    @yield('content')
+    <div id="xwrapper">
+        <div id="xheader"></div>
+        <div id="xmenu"></div>
+        <div id="xcontent">@yield('content')</div>
+        <div id="xfooter"></div>
+    </div>
 </body>
 </html>

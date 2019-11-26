@@ -1,15 +1,15 @@
 <?php
+// show form
+Route::get('/daftar-pengguna', 'PenggunaController@daftar');
+// on submit form
+Route::post('/daftar-pengguna', 'PenggunaController@save');
+// list pengguna
+Route::get('/senarai-pengguna', 'PenggunaController@senarai');
+// hapus pengguna
+Route::get('/hapus-pengguna/{id}', 'PenggunaController@hapus');
+// edit pengguna
+Route::get('/edit-pengguna/{id}', 'PenggunaController@edit');
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-| 
-*/
 // static function
 // get() - terima 2 parameter. param 1 = pattern URL, param 2 = function to exec
 // http://lara6.test/hello
@@ -24,4 +24,8 @@ Route::get('/welcome', 'PageController@home');
 // URL , match kan dgn controller
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/next', function() {
+    return \App\Models\Utility::nextNo();
 });
