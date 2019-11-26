@@ -1,6 +1,11 @@
 @extends('master')
 @section('content')
 <legend>Daftar Pengguna</legend>
+
+@foreach($errors->all() as $err)
+    <div class="alert alert-danger">{{ $err }}</div>
+@endforeach
+
 <form action="/daftar-pengguna" method="post">
     <input type="hidden" name="id" value="{{ old('id', $pengguna->id) }}">
     @csrf
@@ -15,6 +20,10 @@
     <div class="row">
         <div class="col col-md-12">Katalaluan</div>
         <div class="col col-md-12"><input name="password" value="999999" type="password" class="form-control"></div>
+    </div>
+    <div class="row">
+        <div class="col col-md-12">Pengesahan Katalaluan</div>
+        <div class="col col-md-12"><input name="password_confirmation" value="999999" type="password" class="form-control"></div>
     </div>
     <div class="row mt-2">
         <div class="col col-md-12"></div>

@@ -2,6 +2,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pengguna;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class PenggunaController extends Controller {
     // show back the original data to edit
@@ -15,11 +17,20 @@ class PenggunaController extends Controller {
         return redirect()->back();
     }
 
-    // list pengguna
-    public function senarai() {
+    // list dan carian pengguna
+    public function senarai(Request $req) {
         // $pengguna = Pengguna::all(); // return all data dlm bentuk array of obj Pengguna
-        $pengguna = Pengguna::orderBy('nama')->get(); // return all data dlm bentuk array of obj Pengguna
-        return view('pengguna.list', ['pengguna' => $pengguna]);
+        if(! empty($req->nama)) {
+            // user buat carian
+            $nama = $req->nama;
+            $pengguna = Pengguna::where('nama', 'LIKE', "%$nama%")->orderBy('nama')->paginate(3);
+        } else {
+            // tidak buat carian
+            $nama = '';
+            $pengguna = Pengguna::orderBy('nama')->paginate(3); // return all data dlm bentuk array of obj Pengguna
+        }
+        
+        return view('pengguna.list', ['pengguna' => $pengguna, 'nama' => $nama]);
     }
 
     public function daftar() {
@@ -43,8 +54,30 @@ class PenggunaController extends Controller {
         
         $pengguna->nama = $req->nama;
         $pengguna->id_pengguna = $req->id_pengguna;
-        $pengguna->password = $req->password;
-        $pengguna->save();
-        return redirect('/senarai-pengguna');
+
+        // jangan update password kalau password tidak dikemaskini
+        if ($req->password === '999999') {
+            // tidak kemaskini password. jangan buat apa-apa
+        } else {
+            // kemaskini password
+            $pengguna->password = Hash::make($req->password);
+        }      
+
+        //validation
+        $data = $req->all(); // return an array of form submitted data
+        $rules = ['nama' => 'required|min:5', 'id_pengguna' => 'required', 'password' => 'confirmed'];
+        $msg = [
+            'nama.required' => 'Nama wajib diisi', 
+            'nama.min' => 'Nama mesti lebih dari 5 karakter'
+        ];
+        $v = Validator::make($data, $rules, $msg);
+        if (! $v->fails()) {
+            // validation ok
+            $pengguna->save();
+            return redirect('/senarai-pengguna');
+        } else {
+            // validation failed
+            return redirect('/daftar-pengguna')->withInput()->withErrors($v);
+        }
     }
 }

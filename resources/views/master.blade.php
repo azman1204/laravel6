@@ -10,7 +10,9 @@
 </head>
 <body>
     <div id="xwrapper">
-        <div id="xheader"></div>
+        <div id="xheader">
+            {{ Auth::user()->nama }} {{ Auth::user()->id_pengguna }}
+        </div>
         <div id="xmenu"></div>
         <div id="xcontent">@yield('content')</div>
         <div id="xfooter"></div>

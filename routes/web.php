@@ -1,4 +1,11 @@
 <?php
+// on submit login form
+Route::post('/login', 'LoginController@auth');
+// show login form
+Route::get('/login', 'LoginController@login');
+
+// carian pengguna
+Route::post('/senarai-pengguna', 'PenggunaController@senarai');
 // show form
 Route::get('/daftar-pengguna', 'PenggunaController@daftar');
 // on submit form
